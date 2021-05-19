@@ -1,10 +1,12 @@
 package com.epam.training.ticketservice.room;
 
+import com.epam.training.ticketservice.movie.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.epam.training.ticketservice.Console;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,11 +22,11 @@ public class RoomServiceImpl  implements RoomService {
 
     @Override
     public void listAll() {
-        if (roomRepository.findAll().isEmpty()) {
+        List<Room> rooms = roomRepository.findAll();
+        if (rooms.isEmpty()) {
             console.printErr("There are no rooms at the moment");
         } else {
-            roomRepository.findAll()
-                    .stream()
+            rooms.stream()
                     .map(Room::toString)
                     .forEach(console::print);
         }
@@ -64,18 +66,8 @@ public class RoomServiceImpl  implements RoomService {
     public void delete(String name) {
         if (roomRepository.findById(name).isPresent()) {
             roomRepository.deleteById(name);
-
         } else {
             console.printErr("The room doesn't exist.");
         }
-    }
-
-
-    @Override
-    public Collection<Room> findByName(String name) {
-        return this.roomRepository.findAll()
-                .stream()
-                .filter(room -> room.getName().toLowerCase().contains(name.toLowerCase()))
-                .collect(Collectors.toList());
     }
 }

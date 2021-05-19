@@ -51,9 +51,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void describe() {
 
-        String adminUsername = "admin";
         if (this.signedIn.get()) {
-            console.print("Signed in with privileged account '%s'", adminUsername);
+            console.print("Signed in with privileged account '%s'", "admin");
         } else {
             console.printErr("You are not signed in");
         }

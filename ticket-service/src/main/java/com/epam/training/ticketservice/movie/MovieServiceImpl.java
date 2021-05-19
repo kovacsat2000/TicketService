@@ -4,9 +4,7 @@ import com.epam.training.ticketservice.Console;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -71,11 +69,4 @@ public class MovieServiceImpl implements MovieService {
         }
     }
 
-    @Override
-    public Collection<Movie> findByTitle(String title) {
-        return this.movieRepository.findAll()
-                .stream()
-                .filter(movie -> movie.getTitle().toLowerCase().contains(title.toLowerCase()))
-                .collect(Collectors.toList());
-    }
 }

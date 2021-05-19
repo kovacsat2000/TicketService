@@ -1,9 +1,5 @@
 package com.epam.training.ticketservice.movie;
 
-import com.epam.training.ticketservice.movie.Movie;
-
-import java.util.Collection;
-
 public interface MovieService {
 
     void listAll();
@@ -13,7 +9,5 @@ public interface MovieService {
     void update(String title, String genre, int length);
 
     void delete(String title);
-
-    Collection<Movie> findByTitle(String title);
 
 }
